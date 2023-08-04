@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ modelValue }}</h1>
+  <h1>Sample Model: {{ modelValue }}</h1>
 </template>
 
 <script>

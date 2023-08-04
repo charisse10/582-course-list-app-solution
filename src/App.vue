@@ -18,11 +18,9 @@
   <input type="text" v-model="inputText" />
   <FormComponent v-model="inputText"></FormComponent>
 
-  <SampleModel
-    v-for="item in items"
-    :key="item"
-    v-model="inputText"
-  ></SampleModel>
+  <SampleModel v-for="item in items" :key="item" v-model="inputText"
+    >SAMPLE</SampleModel
+  >
 </template>
 
 <script>
