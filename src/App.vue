@@ -12,14 +12,25 @@
     :courses="courses"
     @addCourse="addCourse"
     @removeCourse="removeCourse"
-  >
-  </CourseList>
+  ></CourseList>
+
+  <p>OUTSIDE DISPLAY: {{ inputText }}</p>
+  <input type="text" v-model="inputText" />
+  <FormComponent v-model="inputText"></FormComponent>
+
+  <SampleModel
+    v-for="item in items"
+    :key="item"
+    v-model="inputText"
+  ></SampleModel>
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 // import CourseItem from "./components/CourseItem.vue";
 import CourseList from "./components/CourseList.vue";
+import FormComponent from "./components/FormComponent.vue";
+import SampleModel from "./components/SampleModel.vue";
 
 export default {
   name: "App",
@@ -102,13 +113,18 @@ export default {
           enrollment: 20,
         },
       ],
+      inputText: "",
+      items: ["a", "b", "c"],
     };
   },
   components: {
     // HelloWorld,
     // CourseItem,
     CourseList,
+    FormComponent,
+    SampleModel,
   },
+
   methods: {
     addCourse(id) {
       this.coursesSelected++;
