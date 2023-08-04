@@ -8,19 +8,25 @@ describe("CourseItem.vue", () => {
             name: "Course Name",
             credits: 0,
             hours: 0,
-            description:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis accusantium modi adipisci rem architecto sequi atque mollitia voluptates magnam assumenda at reiciendis aliquid, iusto ab debitis quibusdam molestiae quas commodi?",
+            description: "Lorem ipsum dolor sit amet consectetur",
             location: "online",
             enrollment: 0,
-        }
+        };
         const wrapper = shallowMount(CourseItem, {
             props: { course },
         });
         expect(wrapper.find('h2').text()).toBe('Course Name');
+        expect(wrapper.find("p").text()).toBe('Lorem ipsum dolor sit amet consectetur'
+        );
     });
 
-    
-
+    it("check if the Add Course button is available if it's not full and not added", async() => {
+        const addBtn = "Add Course";
+        const wrapper = shallowMount(CourseItem);
+        expect(wrapper.find("button").text()).toBe(addBtn);
+        await (wrapper.setData({ isFull: false, isAdded: false }));
+        expect(wrapper.find("button").exists()).toBe(true);
+    });
 
 
 

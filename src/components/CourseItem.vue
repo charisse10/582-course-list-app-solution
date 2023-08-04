@@ -31,7 +31,7 @@ export default {
           credits: 0,
           hours: 0,
           description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis accusantium modi adipisci rem architecto sequi atque mollitia voluptates magnam assumenda at reiciendis aliquid, iusto ab debitis quibusdam molestiae quas commodi?",
+            "Lorem ipsum dolor sit amet consectetur",
           location: "online",
           enrollment: 0,
         };
