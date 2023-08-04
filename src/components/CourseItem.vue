@@ -13,8 +13,16 @@
       <li>id: {{ course.id }}</li>
     </ul>
 
-    <button v-if="!isFull && !isAdded" @click="sendAdd">Add Course</button>
-    <button v-else-if="!isFull" @click="sendRemove">Remove Course</button>
+    <button
+      data-test-id="addCourse"
+      v-if="!isFull && !isAdded"
+      @click="sendAdd"
+    >
+      Add Course
+    </button>
+    <button data-test-id="removeCourse" v-else-if="!isFull" @click="sendRemove">
+      Remove Course
+    </button>
   </div>
 </template>
 
@@ -30,8 +38,7 @@ export default {
           name: "Course Name",
           credits: 0,
           hours: 0,
-          description:
-            "Lorem ipsum dolor sit amet consectetur",
+          description: "Lorem ipsum dolor sit amet consectetur",
           location: "online",
           enrollment: 0,
         };
