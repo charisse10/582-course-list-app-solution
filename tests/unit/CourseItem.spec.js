@@ -49,4 +49,25 @@ describe("CourseItem.vue", () => {
     await wrapper.find("button").trigger("click");
     expect(wrapper.emitted("removeCourse")).toBeTruthy();
   });
+
+  it ("displays enrollmentStatus correctly when full", () => {
+    const wrapper = shallowMount(CourseItem, {
+      props: { course: { enrollment: 20 } },
+      });
+    expect(wrapper.find("[data-testid='eStatus']").text()).toBe("full");
+  });
+
+  it ("displays enrollmentStatus correctly when available to join", () => {
+    const wrapper = shallowMount(CourseItem, {
+      props: { course: { enrollment: 10 } },
+      });
+    expect(wrapper.find("[data-testid='eStatus']").text()).toBe("available to join");
+  });
+
+  it ("displays enrollmentStatus correctly when empty", () => {
+    const wrapper = shallowMount(CourseItem, {
+      props: { course: { enrollment: 0 } },
+      });
+    expect(wrapper.find("[data-testid='eStatus']").text()).toBe("empty");
+  });
 });
