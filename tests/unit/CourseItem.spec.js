@@ -21,20 +21,32 @@ describe("CourseItem.vue", () => {
     );
   });
 
-  it("shows Add Course button when it is not full and not added", () => {
+  it("displays Add Course button when it is not full and not added", () => {
     const buttonTxt = "Add Course";
     const wrapper = shallowMount(CourseItem);
     expect(wrapper.find("button").text()).toBe(buttonTxt);
   });
 
-  // it("emits an remove course event when the Remove Course button is clicked", () => {
 
-  // });
-  // it("displays the add button if available and it was not selected", () => {
+  it("displays Remove Course button when it is not full but added", async () => {
+    const buttonTxt = "Remove Course";
+    const wrapper = shallowMount(CourseItem);
+    await wrapper.setData({ isAdded: true });
+    expect(wrapper.find("button").text()).toBe(buttonTxt);
+  });
 
-  // });
 
-  // it("displays the remove button if available and it was selected", () => {
+  it ("emits addCourse event when Add Course button is clicked", async () => {
+    const wrapper = shallowMount(CourseItem);
+    await wrapper.find("button").trigger("click");
+    expect(wrapper.emitted("addCourse")).toBeTruthy();
+  });
 
-  // });
+
+  it ("emits removeCourse event when Remove Course button is clicked", async () => {
+    const wrapper = shallowMount(CourseItem);
+    await wrapper.setData({ isAdded: true });
+    await wrapper.find("button").trigger("click");
+    expect(wrapper.emitted("removeCourse")).toBeTruthy();
+  });
 });
