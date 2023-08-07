@@ -2,7 +2,8 @@ import { shallowMount } from "@vue/test-utils";
 import CourseItem from "@/components/CourseItem.vue";
 
 describe("CourseItem.vue", () => {
-  it("check if course renders the props", () => {
+
+  it("renders the props: course", () => {
     const course = {
       id: 0,
       name: "Course Name",
@@ -20,6 +21,7 @@ describe("CourseItem.vue", () => {
       "Lorem ipsum dolor sit amet consectetur"
     );
   });
+
 
   it("displays Add Course button when it is not full and not added", () => {
     const buttonTxt = "Add Course";
@@ -40,6 +42,7 @@ describe("CourseItem.vue", () => {
     const wrapper = shallowMount(CourseItem);
     await wrapper.find("button").trigger("click");
     expect(wrapper.emitted("addCourse")).toBeTruthy();
+    expect(wrapper.emitted("addCourse")[0][0]).toBe(0);
   });
 
 
@@ -48,7 +51,16 @@ describe("CourseItem.vue", () => {
     await wrapper.setData({ isAdded: true });
     await wrapper.find("button").trigger("click");
     expect(wrapper.emitted("removeCourse")).toBeTruthy();
+    expect(wrapper.emitted("removeCourse")[0][0]).toBe(0);
   });
+
+
+  it ("hides the button when not available or selected", async () => {
+    const wrapper = shallowMount(CourseItem);
+    await wrapper.setData({ isFull: true, isAdded: true });
+    expect(wrapper.find("button").exists()).toBe(true);
+  });
+
 
   it ("displays enrollmentStatus correctly when full", () => {
     const wrapper = shallowMount(CourseItem, {
@@ -70,4 +82,6 @@ describe("CourseItem.vue", () => {
       });
     expect(wrapper.find("[data-testid='eStatus']").text()).toBe("empty");
   });
+
 });
+
